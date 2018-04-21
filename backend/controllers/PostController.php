@@ -33,6 +33,7 @@ class PostController extends Controller
      * Lists all Post models.
      * @return mixed
      */
+    // 列表动作
     public function actionIndex()
     {
         $searchModel = new PostSearch();
@@ -49,8 +50,24 @@ class PostController extends Controller
      * @param integer $id
      * @return mixed
      */
+    // 查看
     public function actionView($id)
     {
+        // 第一种查询的方法：yii/db/command
+        // 命令createCommand
+        // $post=Yii::$app->db->createCommand('select * from post
+        //     where id=:id and status=:status')
+        // // 绑定参数
+        // ->bindValue(':id',$_GET['id'])
+        // ->bindValue(':status',2)
+        // ->queryOne();
+        // var_dump($post);
+        // die;
+        // render方法：view是作为模板 model方法返回的是数据
+        // 
+        // 第二种查询的方法：方法find
+        // $model=Post::find()->where(['id'=>32])->one();
+        // $model=Post::find()->where(['status'=>1])->all();
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -61,6 +78,7 @@ class PostController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    // 新增
     public function actionCreate()
     {
         $model = new Post();
@@ -80,6 +98,7 @@ class PostController extends Controller
      * @param integer $id
      * @return mixed
      */
+    // 修改
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -99,6 +118,7 @@ class PostController extends Controller
      * @param integer $id
      * @return mixed
      */
+    // 删除
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -113,8 +133,13 @@ class PostController extends Controller
      * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
+    // 查找字段的操作
+    // 修饰符为protected 表示这个方法只允许类里面的方法进行调用
     protected function findModel($id)
     {
+        // ($model = Post::findOne($id)
+        // 关键点findOne是AR已经定义好的方法
+        // 
         if (($model = Post::findOne($id)) !== null) {
             return $model;
         } else {

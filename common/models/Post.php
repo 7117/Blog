@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 
+// 使用静态方法tablename返回的所有字段就是class类的属性
+// 进行列出了包含的所有的属性从而来进行备用查找
 /**
  * This is the model class for table "post".
  *
@@ -20,6 +22,7 @@ use Yii;
  * @property Adminuser $author
  * @property Poststatus $status0
  */
+// yii\db\ActiveRecord是继承于common\models的
 class Post extends \yii\db\ActiveRecord
 {
     /**
@@ -33,6 +36,8 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    // 模型类的业务规则
+    // 1.是依据表中字段的属性设置自动生成的2.是依据表中相互的关系进行生成的
     public function rules()
     {
         return [
@@ -48,23 +53,25 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    // 属性标签
     public function attributeLabels()
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'tags' => 'Tags',
-            'status' => 'Status',
-            'create_time' => 'Create Time',
-            'update_time' => 'Update Time',
-            'author_id' => 'Author ID',
+            'title' => '标题',
+            'content' => '内容',
+            'tags' => '标签',
+            'status' => '状态',
+            'create_time' => '创建时间',
+            'update_time' => '修改时间',
+            'author_id' => '作者',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
+    // 文章进行获取评论
     public function getComments()
     {
         return $this->hasMany(Comment::className(), ['post_id' => 'id']);
@@ -73,6 +80,7 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    // 文章获取作者
     public function getAuthor()
     {
         return $this->hasOne(Adminuser::className(), ['id' => 'author_id']);
@@ -81,6 +89,7 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    // 获取文章的状态
     public function getStatus0()
     {
         return $this->hasOne(Poststatus::className(), ['id' => 'status']);
