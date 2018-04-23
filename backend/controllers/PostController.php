@@ -102,10 +102,12 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        // 先查看1、是否有数据提交上来  2.查看是否符合数据规则 如符合则进行保存
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // 跳转到文章查看页面
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            // 继续显示修改页面 并提示错误
             return $this->render('update', [
                 'model' => $model,
             ]);
