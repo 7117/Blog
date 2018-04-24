@@ -12,6 +12,12 @@ use common\models\Post;
  */
 class PostSearch extends Post
 {
+    
+    public function attributes()
+    {
+        return array_merge(parent::attributes(),['authorName']);
+    }
+
     /**
      * @inheritdoc
      */
@@ -47,6 +53,13 @@ class PostSearch extends Post
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => ['pageSize'=>10],
+            'sort'=>[
+                    'defaultOrder'=>[
+                            'id'=>SORT_DESC,                    
+                    ],
+                    'attributes'=>['id','title'],
+            ],
         ]);
 
         $this->load($params);
