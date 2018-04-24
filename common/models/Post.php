@@ -25,6 +25,7 @@ use Yii;
 // yii\db\ActiveRecord是继承于common\models的
 class Post extends \yii\db\ActiveRecord
 {
+    private $_oldTags;
     /**
      * @inheritdoc
      */
@@ -93,5 +94,46 @@ class Post extends \yii\db\ActiveRecord
     public function getStatus0()
     {
         return $this->hasOne(Poststatus::className(), ['id' => 'status']);
+    }
+
+    public function beforeSave($insert)
+    {
+        if(parent::beforeSave($insert))
+        {
+            if($insert)
+            {
+                $this->create_time = time();
+                $this->update_time = time();
+            }
+            else 
+            {
+                $this->update_time = time();
+            }
+            
+            return true;
+                
+        }
+        else 
+        {
+            return false;
+        }
+    } 
+    
+    public function afterFind()
+    {
+        parent::afterFind();
+        $this->_oldTags = $this->tags;
+    }
+    
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        Tag::updateFrequency($this->_oldTags, $this->tags);
+    }
+    
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        Tag::updateFrequency($this->tags, '');
     }
 }

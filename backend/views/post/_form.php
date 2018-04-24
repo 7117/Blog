@@ -51,9 +51,9 @@ use common\models\Adminuser;
     <?= $form->field($model,'status')
              ->dropDownList($allStatus,['prompt'=>'请选择状态']);?>
 
-    <?= $form->field($model, 'create_time')->textInput() ?>
+    <!-- <?= $form->field($model, 'create_time')->textInput() ?> -->
 
-    <?= $form->field($model, 'update_time')->textInput() ?>
+    <!-- <?= $form->field($model, 'update_time')->textInput() ?> -->
 
     <?php
         $Adminuser=Adminuser::find()

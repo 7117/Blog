@@ -83,6 +83,9 @@ class PostController extends Controller
     {
         $model = new Post();
 
+        // $model->create_time=time();
+        // $model->update_time=time();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -102,7 +105,9 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        // 先查看1、是否有数据提交上来  2.查看是否符合数据规则 如符合则进行保存
+        // 先查看1、是否有数据提交上来  2.查看是否符合数据规则 如符合则进行保存       
+        // $model->update_time=time();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             // 跳转到文章查看页面
             return $this->redirect(['view', 'id' => $model->id]);
