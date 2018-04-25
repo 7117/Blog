@@ -14,6 +14,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 //  使用小部件
 use common\widgets\Alert;
+use common\models\Comment;
 
 AppAsset::register($this);
 ?>
@@ -49,6 +50,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => '文章管理', 'url' => ['/post/index']],
         ['label' => '评论管理', 'url' => ['/comment/index']],
+        '<li><span class="badge">'.Comment::getPengdingCommentCount().'</span></li>',
         ['label' => '用户管理', 'url' => ['/user/index']],
         ['label' => '管理员', 'url' => ['/adminuser/index']],
     ];
