@@ -25,7 +25,7 @@ class PostSearch extends Post
     {
         return [
             [['id', 'status', 'create_time', 'update_time', 'author_id'], 'integer'],
-            [['title', 'content', 'tags'], 'safe'],
+            [['title', 'content', 'tags','authorName'], 'safe'],
         ];
     }
 
@@ -62,10 +62,13 @@ class PostSearch extends Post
             ],
         ]);
 
+        // 块赋值
         $this->load($params);
 
+        // 对输入的数据进行验证
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
+            // 是否在错误输入的情况下展示数据
             // $query->where('0=1');
             return $dataProvider;
         }
@@ -83,6 +86,15 @@ class PostSearch extends Post
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'tags', $this->tags]);
 
+        $query->join('INNER JOIN','Adminuser','post.author_id = Adminuser.id');
+        $query->andFilterWhere(['like','Adminuser.nickname',$this->authorName]);
+        
+        $dataProvider->sort->attributes['authorName'] = 
+        [
+            'asc'=>['Adminuser.nickname'=>SORT_ASC],
+            'desc'=>['Adminuser.nickname'=>SORT_DESC],
+        ];
+               
         return $dataProvider;
     }
 }

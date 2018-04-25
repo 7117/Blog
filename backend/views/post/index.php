@@ -29,8 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             // 'content:ntext',
-            ['attribute'=>'author_id',
-            'value'=>'author.nickname',],
+            ['attribute'=>'authorName',
+            'label'=>'作者',
+            'value'=>'author.nickname',
+            ],
             'tags:ntext',
 
             ['attribute'=>'status',
