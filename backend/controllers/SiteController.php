@@ -71,16 +71,18 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->goHome();//是登登录了的  转到首页
         }
-
+        // 新建模型对象
         $model = new LoginForm();
+        // 通过load块赋值拿到用户提交的数据
+        // 执行load方法
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->goBack();//登陆成功 回到登录前的页面
         } else {
             return $this->render('login', [
                 'model' => $model,
-            ]);
+            ]);//登录失败 登录页面显示错误 让用户填写正确的用户名与密码
         }
     }
 
