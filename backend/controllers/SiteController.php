@@ -5,7 +5,7 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
+use common\models\AdminLoginForm;
 
 /**
  * Site controller
@@ -74,7 +74,7 @@ class SiteController extends Controller
             return $this->goHome();//是登登录了的  转到首页
         }
         // 新建模型对象
-        $model = new LoginForm();
+        $model = new AdminLoginForm();
         // 通过load块赋值拿到用户提交的数据
         // 执行load方法
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
