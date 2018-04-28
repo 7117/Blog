@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="adminuser-search">
+<div class="admin-user-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -26,6 +26,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'email') ?>
 
     <?php // echo $form->field($model, 'profile') ?>
+
+    <?php // echo $form->field($model, 'auth_key') ?>
+
+    <?php // echo $form->field($model, 'password_hash') ?>
+
+    <?php // echo $form->field($model, 'password_reset_token') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
