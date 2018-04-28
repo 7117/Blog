@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Adminuser;
+use common\models\AdminUser;
 
 /**
- * AdminuserSearch represents the model behind the search form about `common\models\Adminuser`.
+ * AdminuserSearch represents the model behind the search form about `common\models\AdminUser`.
  */
-class AdminuserSearch extends Adminuser
+class AdminuserSearch extends AdminUser
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class AdminuserSearch extends Adminuser
     {
         return [
             [['id'], 'integer'],
-            [['username', 'nickname', 'password', 'email', 'profile'], 'safe'],
+            [['username', 'nickname', 'password', 'email', 'profile', 'auth_key', 'password_hash', 'password_reset_token'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class AdminuserSearch extends Adminuser
      */
     public function search($params)
     {
-        $query = Adminuser::find();
+        $query = AdminUser::find();
 
         // add conditions that should always apply here
 
@@ -66,7 +66,10 @@ class AdminuserSearch extends Adminuser
             ->andFilterWhere(['like', 'nickname', $this->nickname])
             ->andFilterWhere(['like', 'password', $this->password])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'profile', $this->profile]);
+            ->andFilterWhere(['like', 'profile', $this->profile])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token]);
 
         return $dataProvider;
     }
