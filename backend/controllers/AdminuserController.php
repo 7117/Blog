@@ -68,7 +68,7 @@ class AdminuserController extends Controller
     public function actionCreate()
     {
         $model = new SignupForm();
-
+        // 如果执行成功 就转去用户信息查看页面
         if ($model->load(Yii::$app->request->post())) {
            if($user = $model->signup())
            {
