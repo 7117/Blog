@@ -198,5 +198,5 @@ class AdminuserController extends Controller
     			'allPrivilegesArray'=>$allPrivilegesArray]);
        			 
     }
-          
+
 }
