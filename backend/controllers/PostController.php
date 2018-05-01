@@ -83,9 +83,9 @@ class PostController extends Controller
     public function actionCreate()
     {
 
-        if(!Yii::$app->user->can('createPost')){
-            throw new ForbiddenHttpException("对不起,你没有进行操作的权限")
-        }
+        // if(!Yii::$app->user->can('createPost')){
+        //     throw new ForbiddenHttpException("对不起,你没有进行操作的权限")
+        // }
 
 
         $model = new Post();
