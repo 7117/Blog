@@ -47,13 +47,17 @@ class PostSearch extends Post
      */
     public function search($params)
     {
+        // 返回的是post的所有的文章信息
         $query = Post::find();
-
-        // add conditions that should always apply here
-
+        // var_dump($query);die;
+        // 对于得到的数据进行添加条件的修改和显示
+        // ActiveDataProvider返回的是个对象
         $dataProvider = new ActiveDataProvider([
+            // 1.数据传入
+            // 2.进行分页
+            // 3.进行排序
             'query' => $query,
-            'pagination' => ['pageSize'=>10],
+            'pagination' => ['pageSize'=>3],
             'sort'=>[
                     'defaultOrder'=>[
                             'id'=>SORT_DESC,                    

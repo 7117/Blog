@@ -8,14 +8,19 @@ use common\models\Poststatus;
 /* @var $searchModel common\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+// 标题
 $this->title = '文章管理';
+// 面包屑
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
 <div class="post-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <!-- 创建文章的按钮 这里用到htmlhelper -->
     <p>
         <?= Html::a('创建文章', ['create'], ['class' => 'btn btn-success']) ?>
     </p>

@@ -7,6 +7,7 @@ use common\models\Post;
 use common\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+// 使用behavior的时候需要引入的文件
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
 
@@ -18,12 +19,18 @@ class PostController extends Controller
     /**
      * @inheritdoc
      */
+    // behavior起到过滤数据的作用
+    // 1.可以过滤用户
+    // 2.可以过滤动作提交的方式
     public function behaviors()
     {
         return [
+            //1.设置access
+            //2.动作的设置
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
+                    // 删除只允许的提交方式是post 否则报错
                     'delete' => ['POST'],
                 ],
             ],
@@ -38,8 +45,10 @@ class PostController extends Controller
     public function actionIndex()
     {
         $searchModel = new PostSearch();
+        // dataprovider会把进行查询到的数据进行排序分页等操作
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        // 进行显示到index的页面
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
