@@ -50,7 +50,9 @@ class PostController extends Controller
 
         // 进行显示到index的页面
         return $this->render('index', [
+            // 搜索到的结果进行显示到首页
             'searchModel' => $searchModel,
+            // 搜索到的数据进行提供给dataprovider
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -60,7 +62,7 @@ class PostController extends Controller
      * @param integer $id
      * @return mixed
      */
-    // 查看
+    // 查看一篇文章的代码 由url的id参数传递进来后  进行actionview显示
     public function actionView($id)
     {
         // 第一种查询的方法：yii/db/command
@@ -78,6 +80,9 @@ class PostController extends Controller
         // 第二种查询的方法：方法find
         // $model=Post::find()->where(['id'=>32])->one();
         // $model=Post::find()->where(['status'=>1])->all();
+        // 
+        // 
+        // 
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -88,7 +93,7 @@ class PostController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    // 新增
+    // 新增一篇文章
     public function actionCreate()
     {
 
@@ -96,12 +101,12 @@ class PostController extends Controller
         //     throw new ForbiddenHttpException("对不起,你没有进行操作的权限")
         // }
 
-
+        // 新建一个对象
         $model = new Post();
 
         // $model->create_time=time();
         // $model->update_time=time();
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
