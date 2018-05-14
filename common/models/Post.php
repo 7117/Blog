@@ -28,6 +28,7 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    // 返回表名 就是进行返回了表中的各种属性
     public static function tableName()
     {
         return 'post';
@@ -43,6 +44,7 @@ class Post extends \yii\db\ActiveRecord
             [['content', 'tags'], 'string'],
             [['status', 'create_time', 'update_time', 'author_id'], 'integer'],
             [['title'], 'string', 'max' => 128],
+            // 作者必须存在 作者id必须存在  必须存在于adminuser里面
             [['author_id'], 'exist', 'skipOnError' => true, 'targetClass' => Adminuser::className(), 'targetAttribute' => ['author_id' => 'id']],
             [['status'], 'exist', 'skipOnError' => true, 'targetClass' => Poststatus::className(), 'targetAttribute' => ['status' => 'id']],
         ];
@@ -51,6 +53,7 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    // 属性方法
     public function attributeLabels()
     {
         return [
@@ -65,6 +68,7 @@ class Post extends \yii\db\ActiveRecord
         ];
     }
 
+    // 下面的代码全部是业务逻辑
     /**
      * @return \yii\db\ActiveQuery
      */
