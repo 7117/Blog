@@ -26,6 +26,7 @@ use common\models\Adminuser;
     <?php 
         //第1种查询方法-ar
         // $psObjs=Poststatus::find()->all();//查到文章状态表的所有数据
+        // 使用arrayhelper将数据进行转换成键值对的形式
         // $allStatus=ArrayHelper::map($psObjs,'id','name');
     
         // 第2种方法-command
