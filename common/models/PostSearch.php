@@ -47,6 +47,8 @@ class PostSearch extends Post
      */
     public function search($params)
     {
+        // GridView主要由以下3部分进行组成
+        // 1.dataprovider 2.filterModel 3.columns
         // 返回的是post的所有的文章信息
         $query = Post::find();
         // var_dump($query);die;
