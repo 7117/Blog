@@ -32,6 +32,8 @@ class PostSearch extends Post
     /**
      * @inheritdoc
      */
+    //将父类中的场景的设置进行作废掉
+    //作废的方法：直接调用最顶级父类中的方法
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
@@ -58,8 +60,11 @@ class PostSearch extends Post
             // 1.数据传入
             // 2.进行分页
             // 3.进行排序
+            // 查询出来的结果
             'query' => $query,
+            // 分页
             'pagination' => ['pageSize'=>3],
+            // 排序
             'sort'=>[
                     'defaultOrder'=>[
                             'id'=>SORT_DESC,                    
@@ -69,6 +74,7 @@ class PostSearch extends Post
         ]);
 
         // 块赋值
+        // 输入id=42
         $this->load($params);
 
         // 对输入的数据进行验证
@@ -81,6 +87,7 @@ class PostSearch extends Post
 
         // grid filtering conditions
         $query->andFilterWhere([
+            // 这里出现id为42 构建出现一个查询条件
             'post.id' => $this->id,
             'post.status' => $this->status,
             'create_time' => $this->create_time,
@@ -95,6 +102,7 @@ class PostSearch extends Post
         $query->join('INNER JOIN','Adminuser','post.author_id = Adminuser.id');
         $query->andFilterWhere(['like','Adminuser.nickname',$this->authorName]);
         
+        // 按照作者名字进行排序 正序倒序都可以
         $dataProvider->sort->attributes['authorName'] = 
         [
             'asc'=>['Adminuser.nickname'=>SORT_ASC],
