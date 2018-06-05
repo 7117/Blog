@@ -44,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       ->orderBy('position')
                       ->indexBy('id')
                       ->column(),
+            // 如果状态为未审核的时候 就给标注为醒目颜色
             'contentOptions'=>
                     function($model)
                     {
