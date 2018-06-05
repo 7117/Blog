@@ -15,7 +15,7 @@ class CommentSearch extends Comment
     
     public function attributes()
     {
-        return array_merge(parent::attributes(),['user.username']);
+        return array_merge(parent::attributes(),['user.username'],['post.title']);
     }
 
     /**
@@ -25,7 +25,7 @@ class CommentSearch extends Comment
     {
         return [
             [['id', 'status', 'create_time', 'userid', 'post_id'], 'integer'],
-            [['content', 'email', 'url','user.username'], 'safe'],
+            [['content', 'email', 'url','user.username','post.title'], 'safe'],
         ];
     }
 
@@ -83,6 +83,17 @@ class CommentSearch extends Comment
         [
                 'asc'=>['user.username'=>SORT_ASC],
                 'desc'=>['user.username'=>SORT_DESC],
+        ];
+
+        // 连接
+        $query->join('INNER JOIN','post','comment.post_id = post.id');
+        // 过滤
+        $query->andFilterWhere(['like','post.title',$this->getAttribute('post.title')]);
+        // 排序
+        $dataProvider->sort->attributes['post.title'] =
+        [
+            'asc'=>['post.title'=>SORT_ASC],
+            'desc'=>['post.title'=>SORT_DESC],
         ];
         
         $dataProvider->sort->defaultOrder = 

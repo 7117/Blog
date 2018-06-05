@@ -126,7 +126,7 @@ class CommentController extends Controller
     {
         
         if(!Yii::$app->user->can('commentAuditor')){
-            throw new ForbiddenHttpException("对不起,你没有进行操作的权限")
+            throw new ForbiddenHttpException("对不起,你没有进行操作的权限");
         }
 
         $model = $this->findModel($id);

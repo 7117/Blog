@@ -64,7 +64,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'email:email',
             // 'url:url',
             // 'post_id',
-            'post.title',
+            // 'post.title',
+
+            [
+                'attribute'=>'post.title',
+                'label'=>'标题',
+                'value'=>'post.title',
+            ],
+
 
             [
             'class' => 'yii\grid\ActionColumn',
