@@ -95,10 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             return Html::a('<span class="glyphicon glyphicon-check"></span>',$url,$options);
                             
                         },
-                ],  
-                    
-
-                    
+                ],          
             ],
         ],
     ]); ?>

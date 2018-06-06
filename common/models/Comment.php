@@ -101,6 +101,7 @@ class Comment extends \yii\db\ActiveRecord
         return ($this->save()?true:false);
     }
 
+    // 获取待审核评论的数量
     public static function getPengdingCommentCount()
     {
         return Comment::find()->where(['status'=>1])->count();
