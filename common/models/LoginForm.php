@@ -41,7 +41,7 @@ class LoginForm extends Model
      */
     // 两个参数
     // 参数一：要验证的参数
-    // 参数二：
+    // 参数二：提供的参数
     public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
