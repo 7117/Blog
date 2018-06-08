@@ -74,9 +74,9 @@ class SiteController extends Controller
             return $this->goHome();//是否是登录了的  转到首页
         }
         // 新建模型对象
-        $model = new AdminLoginForm();
-        // 通过load块赋值拿到用户提交的数据
-        // 执行model的login方法
+        $model = new AdminLoginForm(); 
+        // 通过load块赋值拿到用户提交的数据 使用post方法进行保存登记的信息
+        // 执行model的login方法 进行保存用户的登录信息
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();//登陆成功 回到登录前的页面
         } else {

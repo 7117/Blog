@@ -27,7 +27,7 @@ class AdminLoginForm extends Model
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
-            // 
+            // 验证密码的方法
             ['password', 'validatePassword'],
         ];
     }
@@ -74,6 +74,8 @@ class AdminLoginForm extends Model
         // 是否符合验证规则
         if ($this->validate()) {
             // 表示用户已经登录好 进行注入到系统中
+            // 如果存在这个用户名的话  就进行保留 
+            // 反之不保存
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
         
@@ -85,6 +87,7 @@ class AdminLoginForm extends Model
      *
      * @return User|null
      */
+    // 返回是否这得到  是一个bool值
     protected function getUser()
     {
         if ($this->_user === null) {
