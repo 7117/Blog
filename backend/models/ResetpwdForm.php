@@ -10,6 +10,7 @@ use yii\helpers\VarDumper;
  */
 class ResetpwdForm extends Model
 {
+    // 去除了除了关于密码所有的属性
     public $password;
     public $password_repeat;
 
