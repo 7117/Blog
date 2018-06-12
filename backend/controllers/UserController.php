@@ -85,6 +85,7 @@ class UserController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // 这里进行修改的跳转 跳转至index页面
             return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('update', [
