@@ -13,6 +13,7 @@ use Yii;
  *
  * @property Comment[] $comments
  */
+
 class Commentstatus extends \yii\db\ActiveRecord
 {
     /**
