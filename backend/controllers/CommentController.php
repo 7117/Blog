@@ -8,6 +8,8 @@ use common\models\CommentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
+
 
 /**
  * CommentController implements the CRUD actions for Comment model.
