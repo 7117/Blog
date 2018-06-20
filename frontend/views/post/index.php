@@ -31,6 +31,7 @@ use yii\caching\yii\caching;
         <?= ListView::widget([
                 'id'=>'postList',
                 'dataProvider'=>$dataProvider,
+                // listview的功能
                 'itemView'=>'_listitem',//子视图,显示一篇文章的标题等内容.
                 'layout'=>'{items} {pager}',
                 'pager'=>[
