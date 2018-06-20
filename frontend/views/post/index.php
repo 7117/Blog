@@ -28,6 +28,7 @@ use yii\caching\yii\caching;
         
         </ol>
         
+        <!-- listview共用模板listitem -->
         <?= ListView::widget([
                 'id'=>'postList',
                 'dataProvider'=>$dataProvider,
