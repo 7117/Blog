@@ -28,6 +28,7 @@ use yii\helpers\Url;
 			<li class="active"><?= $model->title?></li>
 			</ol>
 			
+			
 			<div class="post">
 				<div class="title">
 					<h2><a href="<?= $model->url;?>"><?= Html::encode($model->title);?></a></h2>				
