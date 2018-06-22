@@ -23,26 +23,28 @@ use yii\helpers\Url;
 		<div class="col-md-9">
 		
 			<ol class="breadcrumb">
-			<li><a href="<?= Yii::$app->homeUrl;?>">首页</a></li>
-			<li><a href="<?= Url::to(['post/index']);?>">文章列表</a></li>
-			<li class="active"><?= $model->title?></li>
+				<li><a href="<?= Yii::$app->homeUrl;?>">首页</a></li>
+				<li><a href="<?= Url::to(['post/index']);?>">文章列表</a></li>
+				<li class="active"><?= $model->title?></li>
 			</ol>
 			
 			
 			<div class="post">
 				<div class="title">
-					<h2><a href="<?= $model->url;?>"><?= Html::encode($model->title);?></a></h2>				
+						<!-- 文章的标题进行添加url -->
+						<h2><a href="<?= $model->url;?>"><?= Html::encode($model->title);?></a></h2>				
+						<!-- 发布时间更新时间 -->
 						<div class="author">
-						<span class="glyphicon glyphicon-time" aria-hidden="true"></span><em><?= date('Y-m-d H:i:s',$model->create_time)."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";?></em>
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span><em><?= Html::encode($model->author->nickname);?></em>
+							<span class="glyphicon glyphicon-time" aria-hidden="true"></span><em><?= date('Y-m-d H:i:s',$model->create_time)."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";?></em>
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span><em><?= Html::encode($model->author->nickname);?></em>
 						</div>				
 				</div>
 		
 			
-			<br>
-			
-			<div class="content">
-			<?= HTMLPurifier::process($model->content)?>
+				<br>
+				
+				<div class="content">
+				<?= HTMLPurifier::process($model->content)?>
 			</div>
 			
 			<br>
