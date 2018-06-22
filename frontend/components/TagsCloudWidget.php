@@ -6,6 +6,7 @@ use yii\helpers\Html;
 
 class TagsCloudWidget extends Widget
 {
+	// 参数 准备好的数组
 	public $tags;
 	
 	public function init()
