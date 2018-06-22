@@ -44,8 +44,8 @@ use yii\helpers\Url;
 				<br>
 				
 				<div class="content">
-				<?= HTMLPurifier::process($model->content)?>
-			</div>
+					<?= HTMLPurifier::process($model->content)?>
+				</div>
 			
 			<br>
 			
