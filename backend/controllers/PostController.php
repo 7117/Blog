@@ -6,9 +6,11 @@ use Yii;
 use common\models\Post;
 use common\models\PostSearch;
 use yii\web\Controller;
+// 没有找到需要引用的类
 use yii\web\NotFoundHttpException;
-// 使用behavior的时候需要引入的文件
+// 使用behavior的时候需要引入的文件 动作过滤类
 use yii\filters\VerbFilter;
+// 拒绝请求的时候发送信息需要引用的类
 use yii\web\ForbiddenHttpException;
 
 /**
