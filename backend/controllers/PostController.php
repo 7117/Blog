@@ -141,13 +141,16 @@ class PostController extends Controller
     public function actionUpdate($id)
     {
         
+        // 修改文章的权限
         if(!Yii::$app->user->can('updatePost')){
             throw new ForbiddenHttpException("对不起,你没有进行操作的权限");
         }
 
-
+        // 获取文章的数据
         $model = $this->findModel($id);
-        // 先查看1、是否有数据提交上来  2.查看是否符合数据规则 如符合则进行保存       
+        // 先查看
+        // 1.是否有数据提交上来  
+        // 2.查看是否符合数据规则 如符合则进行保存       
         // $model->update_time=time();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -171,11 +174,11 @@ class PostController extends Controller
     public function actionDelete($id)
     {
         
+        // 删除文章的权限
         if(!Yii::$app->user->can('deletePost')){
             throw new ForbiddenHttpException("对不起,你没有进行操作的权限");
         }
-
-
+        // 找到进行删除
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -192,6 +195,7 @@ class PostController extends Controller
      */
     // 查找字段的操作
     // 修饰符为protected 表示这个方法只允许类里面的方法进行调用
+    // 就是在查找文章
     protected function findModel($id)
     {
         // ($model = Post::findOne($id)
