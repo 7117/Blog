@@ -46,7 +46,9 @@ class PostController extends Controller
      * Lists all Post models.
      * @return mixed
      */
-    // 列表动作
+    // 首页动作 列表动作 
+    // 这里面就集成了一个查询的功能
+    // 首页里面的操作
     public function actionIndex()
     {
         $searchModel = new PostSearch();
@@ -62,7 +64,7 @@ class PostController extends Controller
         ]);
     }
 
-// 以下是增删改查的代码vcyr(view )
+// 以下是增删改查的代码vcud(view create update delete)
 // -----------------------------------------------------------------------------
 
     /**
