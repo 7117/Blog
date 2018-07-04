@@ -62,6 +62,9 @@ class PostController extends Controller
         ]);
     }
 
+// 以下是增删改查的代码vcyr(view )
+// -----------------------------------------------------------------------------
+
     /**
      * Displays a single Post model.
      * @param integer $id
@@ -170,6 +173,8 @@ class PostController extends Controller
 
         return $this->redirect(['index']);
     }
+
+// -----------------------------------------------------------------------------
 
     /**
      * Finds the Post model based on its primary key value.
