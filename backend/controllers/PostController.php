@@ -107,7 +107,9 @@ class PostController extends Controller
     public function actionCreate()
     {
 
+        // 查看用户是否有创建文章的权限
         if(!Yii::$app->user->can('createPost')){
+            // 如果没有权限的话 就使用ForbiddenHttpException跳出相关的信息
             throw new ForbiddenHttpException("对不起,你没有进行操作的权限");
         }
 
@@ -116,10 +118,13 @@ class PostController extends Controller
 
         // $model->create_time=time();
         // $model->update_time=time();
-        
+        // 加载输入的数据
+        // 进行保存输入的数据
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            // 创建成功 就跳转到相关的展示页面
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            // 如果没有创建成功的话 就进行跳转到创建页面
             return $this->render('create', [
                 'model' => $model,
             ]);
