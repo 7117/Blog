@@ -2,9 +2,12 @@
 
 namespace backend\controllers;
 
+// 这里全部的都进行了引用
 use Yii;
+// 控制器肯定会引用模型相关的文件
 use common\models\Post;
 use common\models\PostSearch;
+// 控制器都需要引用的类
 use yii\web\Controller;
 // 没有找到需要引用的类
 use yii\web\NotFoundHttpException;
