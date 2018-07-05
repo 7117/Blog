@@ -20,6 +20,7 @@ class LoginForm extends Model
     /**
      * @inheritdoc
      */
+    // 相关字段的验证
     public function rules()
     {
         return [
@@ -40,15 +41,17 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
+    // 验证密码
     // 两个参数
     // 参数一：要验证的参数
     // 参数二：提供的参数
     public function validatePassword($attribute, $params)
     {
+        // 没有错误
         if (!$this->hasErrors()) {
-            // 是否存在该用户
+            // 存在该用户
             $user = $this->getUser();
-            // 验证密码
+            // 验证密码  没有用户并且密码错误
             if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, '不正确的用户名或者密码.');
             }
@@ -60,6 +63,7 @@ class LoginForm extends Model
      *
      * @return bool whether the user is logged in successfully
      */
+    // 登录后的操作 通过验证规则然后进行保留用户的
     public function login()
     {
         // 是否符合验证规则
@@ -80,6 +84,9 @@ class LoginForm extends Model
     {
         if ($this->_user === null) {
             // user相当于保安 执行方法findbyusername
+            // 
+            // 调用user模型的findByUsername得到姓名
+            // 查找是否存在这个用户
             $this->_user = User::findByUsername($this->username);
         }
 

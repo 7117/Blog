@@ -1,8 +1,10 @@
 <?php
-
+// 命名空间
 namespace common\models;
 
+// 使用yii
 use Yii;
+// 使用html帮助类
 use yii\helpers\Html;
 
 /**
@@ -21,6 +23,7 @@ use yii\helpers\Html;
  * @property Adminuser $author
  * @property Poststatus $status0
  */
+// 模型继承AR类
 class Post extends \yii\db\ActiveRecord
 {
     private $_oldTags;
@@ -29,6 +32,7 @@ class Post extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     // 返回表名 就是进行返回了表中的各种属性
+    // 针对于post表的属性
     public static function tableName()
     {
         return 'post';
@@ -69,6 +73,7 @@ class Post extends \yii\db\ActiveRecord
     }
 
     // 下面的代码全部是业务逻辑
+    // 获得所有的评论
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -76,7 +81,7 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Comment::className(), ['post_id' => 'id']);
     }
-
+    // 获得激活的评论
     public function getActiveComments()
     {
         return $this->hasMany(Comment::className(), ['post_id' => 'id'])
@@ -86,6 +91,7 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    // 获得作者
     public function getAuthor()
     {
         return $this->hasOne(Adminuser::className(), ['id' => 'author_id']);
@@ -94,11 +100,12 @@ class Post extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    // 获得状态
     public function getStatus0()
     {
         return $this->hasOne(Poststatus::className(), ['id' => 'status']);
     }
-    
+    // 在保存之前
     public function beforeSave($insert)
     {
         if(parent::beforeSave($insert))
@@ -121,25 +128,25 @@ class Post extends \yii\db\ActiveRecord
             return false;
         }
     } 
-    
+    // 在找到之后
     public function afterFind()
     {
         parent::afterFind();
         $this->_oldTags = $this->tags;
     }
-    
+    // 在保存之后
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
         Tag::updateFrequency($this->_oldTags, $this->tags);
     }
-    
+    // 在删除之后
     public function afterDelete()
     {
         parent::afterDelete();
         Tag::updateFrequency($this->tags, '');
     }
-    
+    // 获得url
     public function getUrl()
     {
         return Yii::$app->urlManager->createUrl(
@@ -154,7 +161,7 @@ class Post extends \yii\db\ActiveRecord
         $tmpStr = mb_substr($tmpStr,0,$length,'utf-8');
         return $tmpStr.($tmpLen>$length?'...':'');
     }
-    
+    // 获得标签的链接
     public function  getTagLinks()
     {
         $links=array();
@@ -164,7 +171,7 @@ class Post extends \yii\db\ActiveRecord
         }
         return $links;
     }
-    
+    // 获得评论的数量
     public function getCommentCount()
     {
         return Comment::find()->where(['post_id'=>$this->id,'status'=>2])->count();
