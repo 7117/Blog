@@ -32,6 +32,8 @@ use common\models\Adminuser;
         //第1种查询方法-ar
         // $psObjs=Poststatus::find()->all();//查到文章状态表的所有数据
         // 使用arrayhelper将数据进行转换成键值对的形式
+        // 然后⽤ArrayHelper的静态⽅法map把psOjbs这个对象数组进⾏转换，转换为键值对
+        // 数组，也就是下拉菜单需要的键值对数组格式。
         // $allStatus=ArrayHelper::map($psObjs,'id','name');
     
         // 第2种方法-command
@@ -47,6 +49,7 @@ use common\models\Adminuser;
 
         // 第4种方法--不需要arrayhelper 不需要new对象
         // --ar对象
+        // 混合的一张形式
         $allStatus=Poststatus::find()
         ->select(['name','id'])
         ->from('poststatus')
