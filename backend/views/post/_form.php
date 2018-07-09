@@ -1,9 +1,13 @@
 <?php
-
+// 使用htmlhelper类
 use yii\helpers\Html;
+// 这里因为有哦表单 Yii中进行封装了表单的代码 所以进行调用activeform
 use yii\widgets\ActiveForm;
+// 下拉菜单用到了文章的状态
 use common\models\Poststatus;
+// 数组帮助类
 use yii\helpers\ArrayHelper;
+// 使用adminuser模型 这里面有一个模型进行查询了作者 索引进行引用模型类
 use common\models\Adminuser;
 
 
