@@ -94,6 +94,7 @@ class Post extends \yii\db\ActiveRecord
     // 获得作者
     public function getAuthor()
     {
+        // 使用adminuser的id获取
         return $this->hasOne(Adminuser::className(), ['id' => 'author_id']);
     }
 
