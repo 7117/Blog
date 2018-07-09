@@ -94,7 +94,9 @@ class Post extends \yii\db\ActiveRecord
     // 获得作者
     public function getAuthor()
     {
-        // 使用adminuser的id获取
+        // 从post表中的autoor_id获得数值 进行对应adminuser的id 这个id数值的记录
+        // 进行获得对应的classname的文字描述
+        // 就是关联表查询
         return $this->hasOne(Adminuser::className(), ['id' => 'author_id']);
     }
 
