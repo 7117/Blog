@@ -8,6 +8,7 @@ use common\models\Poststatus;
 /* @var $searchModel common\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
+// index.php就是一个展示页面
 // 标题
 $this->title = '文章管理';
 // 面包屑

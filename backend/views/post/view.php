@@ -5,6 +5,7 @@ use yii\helpers\Html;
 // 数据小部件
 use yii\widgets\DetailView;
 
+// view就是一篇文章的详情页面
 /* @var $this yii\web\View */
 /* @var $model common\models\Post */
 // 首页

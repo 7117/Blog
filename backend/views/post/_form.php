@@ -11,6 +11,7 @@ use common\models\Adminuser;
 /* @var $model common\models\Post */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<!-- 新增页面与修改页面会进行调用这个页面 -->
 <!-- 因为文章新增的页面也需要 这个表单 所以就进行封装了起来-->
 <div class="post-form">
 

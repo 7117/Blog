@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Post */
-
+// update就是一片文章的修改页面
 // 面包屑部分
 $this->title = '文章修改: ' . $model->title;
 $this->params['breadcrumbs'][] = ['label' => '文章管理', 'url' => ['index']];
