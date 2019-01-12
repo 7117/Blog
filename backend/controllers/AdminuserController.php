@@ -2,12 +2,16 @@
 
 namespace backend\controllers;
 
+// 基本的控制器
 use Yii;
 use common\models\Adminuser;
 use common\models\AdminuserSearch;
+// 基本的控制器
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+// NotFoundHttpException表示一个状态代码404的“未找到”HTTP异常。
 use yii\filters\VerbFilter;
+// 用户相关的模型
 use backend\models\SignupForm;
 use backend\models\ResetpwdForm;
 use common\models\AuthItem;
@@ -21,12 +25,15 @@ class AdminuserController extends Controller
     /**
      * @inheritdoc
      */
+    // 这个函数来配置控制器的权限
     public function behaviors()
     {
         return [
             'verbs' => [
+                // 过滤器
                 'class' => VerbFilter::className(),
                 'actions' => [
+                    // 删除的method 只允许的提交方式是post 否则报错
                     'delete' => ['POST'],
                 ],
             ],
@@ -55,6 +62,10 @@ class AdminuserController extends Controller
      */
     public function actionView($id)
     {
+        // context环境  上下文
+        // public string render($view, $params = [], $context = null)
+        // 第一个参数：视图文件的名字  
+        // 第二个参数：查询到的数据
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -63,10 +74,13 @@ class AdminuserController extends Controller
     /**
      * Creates a new Adminuser model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * 
      * @return mixed
      */
+
     public function actionCreate()
     {
+        // 调取模型
         $model = new SignupForm();
         // 如果执行成功 就转去用户信息查看页面
         if ($model->load(Yii::$app->request->post())) {
@@ -117,19 +131,22 @@ class AdminuserController extends Controller
     /**
      * Finds the Adminuser model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     * 寻找基于给定值（主键值）的adminuser模型  如果模型不存在  就返回一个404
      * @param integer $id
      * @return Adminuser the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
+        // ActiveRecord方法有两个快捷方法：
+        // findOne 和 findAll，可以来替换find方法。
         if (($model = Adminuser::findOne($id)) !== null) {
             return $model;
         } else {
+            // 封装的好
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-    
     
     public function actionResetpwd($id)
     {
