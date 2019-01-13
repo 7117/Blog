@@ -1,6 +1,7 @@
 <?php
 namespace backend\models;
 
+// 基本的模型
 use yii\base\Model;
 use common\models\Adminuser;
 use yii\helpers\VarDumper;
@@ -10,6 +11,7 @@ use yii\helpers\VarDumper;
  */
 class SignupForm extends Model
 {
+    // 数据表对应的属性
     // 属性负责表单提交的数据
     public $username;
     public $nickname;
@@ -48,6 +50,7 @@ class SignupForm extends Model
         ];
     }
 
+    // 重命名
     public function attributeLabels()
     {
     	return [
@@ -63,7 +66,7 @@ class SignupForm extends Model
     
     /**
      * Signs user up.
-     *
+     * 
      * @return User|null the saved model or null if saving fails
      */
     public function signup()
@@ -74,15 +77,17 @@ class SignupForm extends Model
         
         // 传递数据
         $user = new Adminuser();
+        
+        // 对应数据表进行赋值数据
         $user->username = $this->username;
         $user->nickname = $this->nickname;
         $user->email = $this->email;
         $user->profile = $this->profile;        
-        
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->password = '*';
- //  $user->save(); VarDumper::dump($user->errors);exit(0);
+
+        // 对象执行保存
         return $user->save() ? $user : null;
     }
 }

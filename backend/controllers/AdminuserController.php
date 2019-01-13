@@ -82,14 +82,18 @@ class AdminuserController extends Controller
     {
         // 调取模型
         $model = new SignupForm();
+        // request在接收数据
         // 如果执行成功 就转去用户信息查看页面
+        // post()-----Returns POST parameter with a given name. If name isn't specified, returns an array of all POST parameters.	
+        // 块赋值load包含以下的内容
+        // $model->name = isset($data['name']) ? $data['name'] : null;  
         if ($model->load(Yii::$app->request->post())) {
            if($user = $model->signup())
            {
            		return $this->redirect(['view', 'id' => $user->id]);
            }    	
-        } 
-       
+        }
+        // 进行赋值
         return $this->render('create', [
                 'model' => $model,
             ]);
@@ -106,9 +110,11 @@ class AdminuserController extends Controller
     {
         $model = $this->findModel($id);
 
+        // 加载数据成功  并且  保存成功
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            // 没有成功测话  继续停留在更新页面
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -138,6 +144,7 @@ class AdminuserController extends Controller
      */
     protected function findModel($id)
     {
+        // findmodel里面进行封装的方法就是  findone
         // ActiveRecord方法有两个快捷方法：
         // findOne 和 findAll，可以来替换find方法。
         if (($model = Adminuser::findOne($id)) !== null) {
@@ -162,8 +169,7 @@ class AdminuserController extends Controller
     	 
     	return $this->render('resetpwd', [
     			'model' => $model,
-    	]);
-    
+    	]);   
     }
     
     public function actionPrivilege($id)

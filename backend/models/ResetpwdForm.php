@@ -1,6 +1,7 @@
 <?php
 namespace backend\models;
 
+// 基层的模型
 use yii\base\Model;
 use common\models\Adminuser;
 use yii\helpers\VarDumper;
@@ -17,6 +18,8 @@ class ResetpwdForm extends Model
     /**
      * @inheritdoc
      */
+    // 对应的规则
+    // 两个属性  一个是密码   一个是验证密码
     public function rules()
     {
         return [
@@ -26,7 +29,7 @@ class ResetpwdForm extends Model
         	['password_repeat','compare','compareAttribute'=>'password','message'=>'两次输入的密码不一致！'],
         ];
     }
-
+    // 对应的转化
     public function attributeLabels()
     {
     	return [
