@@ -71,6 +71,7 @@ class SignupForm extends Model
      */
     public function signup()
     {
+        // 触发验证
         if (!$this->validate()) {
             return null;
         }
