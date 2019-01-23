@@ -29,7 +29,7 @@ class AdminuserSearch extends AdminUser
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
+        // bypass scenarios() implementation in the parent class  绕过父类中的scenario()实现
         return Model::scenarios();
     }
 

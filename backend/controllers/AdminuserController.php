@@ -2,14 +2,14 @@
 
 namespace backend\controllers;
 
-// 基本的控制器
 use Yii;
+// 模型
 use common\models\Adminuser;
 use common\models\AdminuserSearch;
 // 基本的控制器
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
 // NotFoundHttpException表示一个状态代码404的“未找到”HTTP异常。
+use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 // 用户相关的模型
 use backend\models\SignupForm;
